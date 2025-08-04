@@ -1,0 +1,17 @@
+{
+    "name": "Malicious_IP_Contact",
+    "patterns": [
+        "\b(?:\\d{1,3}\\.){3}\\d{1,3}\b"
+    ],
+    "description": "Detects connections to suspicious IP addresses.",
+    "severity": "High",
+    "tags": [
+        "network",
+        "C2"
+    ],
+    "attribution": {
+        "source": "VirusTotal Threat Intel",
+        "author": "VT Research Team",
+        "date_created": "2024-09-15"
+    }
+}

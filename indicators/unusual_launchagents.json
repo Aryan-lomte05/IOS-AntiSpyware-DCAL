@@ -1,0 +1,20 @@
+{
+  "name": "Unusual LaunchAgent",
+  "patterns": [
+    "LaunchAgents/.*user/[^ ]+",
+    "\"KeepAlive\"\\s*:\\s*true"
+  ],
+  "description": "Possible malware persistence: new LaunchAgent from writable location with keep-alive.",
+  "severity": "High",
+  "tags": ["persistence", "advanced"]
+
+
+
+
+    ,
+    "attribution": {
+        "source": "Apple Forensics",
+        "author": "Security Team",
+        "date_created": "2024-10-15"
+    }
+}

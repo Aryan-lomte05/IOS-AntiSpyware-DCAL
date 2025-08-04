@@ -1,0 +1,10 @@
+{
+  "name": "RootCA_Or_AnyCert",
+  "patterns": [
+    "RootCertificate|AddTrust|TrustStore",    
+    "\"allow any\"|insecureSkipVerify|AllowAllCertificates" 
+  ],
+  "description": "Flags custom root cert installs and configs that allow insecure/pinned bypass.",
+  "severity": "High",
+  "tags": ["certificate", "security", "mitm", "advanced"]
+}

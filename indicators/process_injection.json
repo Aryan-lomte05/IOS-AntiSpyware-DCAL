@@ -1,0 +1,35 @@
+{
+  "name": "Process Injection Techniques",
+  "description": "Identifies various process injection methods used to evade detection and maintain persistence",
+  "severity": "Critical",
+  "patterns": [
+    "ptrace.*PTRACE_ATTACH",
+    "mach_vm_write.*suspicious",
+    "dylib.*injection.*detected",
+    "code.*cave.*injection",
+    "process.*hollowing",
+    "thread.*execution.*hijacked",
+    "DLL.*sideloading",
+    "reflective.*loading",
+    "memory.*patching.*detected",
+    "shellcode.*injection"
+  ],
+  "attribution": {
+    "source": "MITRE ATT&CK T1055",
+    "author": "Malware Analysis Team",
+    "date_created": "2024-01-22"
+  },
+  "anomalies": [
+    "Unexpected ptrace system calls from user processes",
+    "Memory writes to executable regions of other processes",
+    "Dynamic library loading from unusual locations",
+    "Thread context manipulation in foreign processes",
+    "Executable memory allocation in non-executable processes"
+  ],
+  "indicators_of_compromise": [
+    "Process memory inconsistencies",
+    "Unsigned code execution in signed processes",
+    "Abnormal parent-child process relationships",
+    "Memory artifacts indicating code injection"
+  ]
+}

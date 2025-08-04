@@ -1,0 +1,11 @@
+{
+  "name": "Stealthy_LaunchAgent",
+  "patterns": [
+    "LaunchAgents/.+/(?!com\\.apple)[^/]+\\.plist",     
+    "\"KeepAlive\"\\s*:\\s*true",                    
+    "/var/mobile/Library/LaunchAgents"                  
+  ],
+  "description": "LaunchAgent/Daemon in user-writable path, not by Apple, with keep-alive enabled.",
+  "severity": "High",
+  "tags": ["persistence", "launchagent", "advanced"]
+}

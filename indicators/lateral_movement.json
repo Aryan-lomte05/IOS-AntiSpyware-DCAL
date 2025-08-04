@@ -1,0 +1,36 @@
+{
+  "name": "Lateral Movement Patterns",
+  "description": "Identifies attempts to move laterally through network infrastructure and compromise additional systems",
+  "severity": "High",
+  "patterns": [
+    "ssh.*connection.*internal.*network",
+    "smb.*share.*enumeration",
+    "rdp.*connection.*established",
+    "psexec.*remote.*execution",
+    "wmi.*remote.*command",
+    "powershell.*remoting.*session",
+    "admin.*share.*access",
+    "service.*creation.*remote",
+    "scheduled.*task.*remote",
+    "credential.*reuse.*detected"
+  ],
+  "attribution": {
+    "source": "MITRE ATT&CK T1021",
+    "author": "Network Defense Team",
+    "date_created": "2024-01-30"
+  },
+  "anomalies": [
+    "SSH connections to multiple internal hosts",
+    "SMB share enumeration from single source",
+    "Remote desktop connections outside business hours",
+    "Service creation on multiple remote systems",
+    "Credential reuse across different systems",
+    "Administrative tool usage from non-admin accounts"
+  ],
+  "indicators_of_compromise": [
+    "Rapid propagation across network segments",
+    "Privilege escalation on remote systems",
+    "Tool transfer between compromised hosts",
+    "Coordinated multi-system activities"
+  ]
+}

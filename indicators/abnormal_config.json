@@ -1,0 +1,20 @@
+{
+    "name": "Abnormal_Config_Change",
+    "patterns": [
+        "VPN",
+        "proxy",
+        "RemoteManagement",
+        "profilePayload"
+    ],
+    "description": "Flags unusual/risky config changes.",
+    "severity": "Medium",
+    "tags": [
+        "configuration",
+        "network"
+    ],
+    "attribution": {
+        "source": "IR Handbook",
+        "author": "Internal Research",
+        "date_created": "2024-07-01"
+    }
+}

@@ -1,0 +1,10 @@
+{
+  "name": "Accessibility_Abuse",
+  "patterns": [
+    "accessibility enabled|SpringBoard injection|assistivetouch",
+    "UIAutomation|touch injection|remote control"
+  ],
+  "description": "Non-system app enabled accessibility or UI automation (possible spyware).",
+  "severity": "Medium",
+  "tags": ["automation", "privacy", "espionage", "advanced"]
+}

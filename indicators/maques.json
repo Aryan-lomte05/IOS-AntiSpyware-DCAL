@@ -1,0 +1,12 @@
+{
+  "name": "App_Masquerading",
+  "patterns": [
+    "\\b\\w{3,}\\.app\\.app\\b",               
+    "\\bSafari1\\.app\\b",                     
+    "[\\u200B-\\u200D\\uFEFF]",                
+    "Applications/.+/(?!com\\.apple)[^/]+\\.app" 
+  ],
+  "description": "Detects apps/processes trying to look like stock Apple apps (doubled .app, typos, Unicode abuse).",
+  "severity": "High",
+  "tags": ["masquerade", "process", "advanced"]
+}

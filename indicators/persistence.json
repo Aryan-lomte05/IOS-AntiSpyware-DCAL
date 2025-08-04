@@ -1,0 +1,19 @@
+{
+    "name": "Persistence_Mechanism",
+    "patterns": [
+        "LaunchAgents",
+        "LaunchDaemons",
+        "crontab"
+    ],
+    "description": "Detects unauthorized persistence mechanisms.",
+    "severity": "Medium",
+    "tags": [
+        "startup",
+        "autorun"
+    ],
+    "attribution": {
+        "source": "Apple Forensics",
+        "author": "Security Team",
+        "date_created": "2024-06-18"
+    }
+}

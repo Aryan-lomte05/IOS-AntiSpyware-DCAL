@@ -1,0 +1,17 @@
+{
+    "name": "Unknown_VPN_Profile",
+    "patterns": [
+        "VPNType\\s*:\\s*(?!IPSec|IKEv2|L2TP)",
+        "(proxy|VPN)\\s+(?!Apple|Nord|Express|TunnelBear)[A-Za-z0-9]+",
+        "RemoteManagement",
+        "\"PayloadDisplayName\"[^\n]*Private|Spy"
+    ],
+    "description": "Flags VPN/proxy profiles with suspicious/nonstandard provider names.",
+    "severity": "Medium",
+    "tags": [
+        "vpn",
+        "config",
+        "profile",
+        "advanced"
+    ]
+}
