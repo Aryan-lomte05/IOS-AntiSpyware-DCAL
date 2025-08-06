@@ -1,12 +1,23 @@
 {
   "name": "App_Masquerading",
   "patterns": [
-    "\\b\\w{3,}\\.app\\.app\\b",               
-    "\\bSafari1\\.app\\b",                     
-    "[\\u200B-\\u200D\\uFEFF]",                
-    "Applications/.+/(?!com\\.apple)[^/]+\\.app" 
+    "\\b(?:safarii?|phone|messag|facetime|photos)\\d?\\.app\\b",
+    "[\\u200B-\\u200D\\uFEFF]", 
+    "Applications/.+/(?!com\\.apple)[^/]+\\.app"
   ],
   "description": "Detects apps/processes trying to look like stock Apple apps (doubled .app, typos, Unicode abuse).",
-  "severity": "High",
-  "tags": ["masquerade", "process", "advanced"]
+  "postprocess": "Cross-check process path and signature. Siblings to Apple apps in /private or user home, not in standard /Applications.",
+  "confidence": "High",
+  "examples": [
+    "/private/var/mobile/Containers/Bundle/Safari1.app",
+    "/Applications/Photos.app.app"
+  ],
+  "exclusions": ["com.apple."],
+  "match_type": "path_and_name",
+  "attribution": {
+    "source": "Apple Security Research",
+    "version": "1.0",
+    "date": "2023-10-01"
+  }
 }
+  

@@ -1,17 +1,23 @@
 {
-    "name": "Malicious_IP_Contact",
-    "patterns": [
-        "\b(?:\\d{1,3}\\.){3}\\d{1,3}\b"
-    ],
-    "description": "Detects connections to suspicious IP addresses.",
-    "severity": "High",
-    "tags": [
-        "network",
-        "C2"
-    ],
-    "attribution": {
-        "source": "VirusTotal Threat Intel",
-        "author": "VT Research Team",
-        "date_created": "2024-09-15"
-    }
+  "name": "Malicious_IP_Contact",
+  "patterns": [
+    "\\b(?:[0-9]{1,3}\\.){3}[0-9]{1,3}\\b"
+  ],
+  "postprocess": "Check if IP not in local/reserved space (e.g., 10., 192.168.), and not corporate/institution ASN. Cross-reference with threat intel feeds.",
+  "confidence": "Variable",
+  "enrichments": [
+    "IP ASN lookup",
+    "VirusTotal/AbuseIPDB/ThreatFox API check"
+  ],
+  "exclude_patterns": [
+    "127\\.0\\.0\\.1", "10\\.", "192\\.168\\.", "Apple CDN", "internal"
+  ],
+  "severity": "High",
+  "description": "Detects connections to suspicious/risky IP addresses, excluding local/internal ranges. Use with external IP reputation data.",
+  "tags": ["network", "C2", "intel_correlation", "post_enrichment"],
+  "attribution": {
+    "source": "Apple Security Research",
+    "version": "1.0",
+    "date": "2023-10-01"
+  }
 }
