@@ -1,0 +1,11 @@
+scanning:
+  max_threads: 12
+  timeout_seconds: 600
+  
+reporting:
+  include_context: true
+  max_context_length: 300
+
+thresholds:
+  high_risk_score: 30
+  critical_risk_score: 60

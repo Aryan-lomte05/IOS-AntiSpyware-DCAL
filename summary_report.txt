@@ -1,1 +1,37 @@
-No indicators triggered in the scan.
+=== iOS ANTISPYWARE SCAN SUMMARY ===
+Scan completed: 2025-08-11 22:45:08
+Risk Level: HIGH RISK (Score: 40.25500000000998)
+Total alerts detected: 10695
+
+Alert counts by type:
+  - Suspicious_Process_Launch: 4895 hits
+  - Malicious_IP_Contact: 2691 hits
+  - Outbound_Residential_IP: 2691 hits
+  - Unknown_VPN_Profile: 256 hits
+  - Accessibility_Abuse: 86 hits
+  - App_Masquerading: 24 hits
+  - RootCA_Or_AnyCert: 22 hits
+  - Abnormal_Config_Change: 13 hits
+  - Lateral Movement Patterns: 13 hits
+  - Credential Access Attempts: 3 hits
+  - Defense Evasion Techniques: 1 hits
+
+Alert counts by severity:
+  - Medium: 5237
+  - High: 2731
+  - Unknown: 2726
+  - Critical: 1
+
+Top 5 files with alerts:
+  - spindump-nosymbols.txt: 4960
+  - MAAutoAsset_Locker_History_01.log: 592
+  - MAAutoAsset_Locker_History_02.log: 530
+  - MAAutoAsset_Locker_History_05.log: 462
+  - MAAutoAsset_Locker_History_04.log: 354
+
+Top 5 attributed apps/processes:
+  - Unknown: 5297
+  - com.app: 5184
+  - Error: 72
+  - Patterns: 44
+  - Version: 14
