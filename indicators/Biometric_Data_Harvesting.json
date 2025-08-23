@@ -1,0 +1,37 @@
+{
+  "name": "Biometric_Data_Harvesting",
+  "patterns": [
+    "(?i)(?:LocalAuthentication|LAContext).*(?:biometry|touchID|faceID).*(?:evaluate|access).*(?:without.*consent|stealth)",
+    "(?i)(?:Vision|VNFaceObservation).*(?:detect|recognize|identify).*(?:face|facial.*features).*(?:background|unauthorized)",
+    "(?i)(?:AVFoundation|camera).*(?:capture|detect).*(?:biometric|facial|iris|fingerprint).*(?:pattern|template)",
+    "(?i)(?:CoreML|machine.*learning).*(?:face|voice|gait|behavioral).*(?:recognition|identification|profiling)",
+    "(?i)(?:SpeechFramework|voice).*(?:print|signature|pattern).*(?:extract|analyze|identify).*(?:unauthorized|covert)"
+  ],
+  "postprocess": "Analyze biometric template creation, check for unauthorized face/voice recognition model training, verify legitimate authentication vs harvesting patterns.",
+  "examples": [
+    "VNFaceObservation facial recognition running in background without user consent",
+    "CoreML face recognition model training on user photos without authorization",
+    "SpeechFramework voice pattern extraction during normal conversations"
+  ],
+  "remediation": "Disable Face ID/Touch ID temporarily, revoke camera/microphone access, delete biometric data if possible, check for unknown ML models, consider identity theft monitoring.",
+  "description": "Detects unauthorized collection and analysis of biometric data for identification and surveillance purposes.",
+  "severity": "Critical",
+  "confidence": "High",
+  "tags": ["biometric_theft", "facial_recognition", "voice_analysis", "behavioral_profiling"],
+  "attribution": {
+    "source": "Biometric Privacy Research",
+    "author": "Identity Security Team",
+    "date_created": "2025-08-16"
+  }
+
+,
+  "exclude_patterns": [
+    "com\\.apple\\.", "com\\.google\\.", "com\\.microsoft\\."
+  ],
+  "match_type": "signature",
+  "enrichments": [
+    "Biometric data analysis",
+    "Machine learning model verification",
+    "Camera/microphone access logs"
+  ]
+}

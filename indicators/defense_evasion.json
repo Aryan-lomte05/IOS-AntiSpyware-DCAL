@@ -1,36 +1,22 @@
 {
-  "name": "Defense Evasion Techniques",
-  "description": "Detects attempts to evade security controls, disable monitoring, and hide malicious activities",
-  "severity": "Critical",
+  "name": "Defense_Evasion_Techniques",
   "patterns": [
-    "antivirus.*disabled",
-    "firewall.*rule.*deleted",
-    "logging.*service.*stopped",
-    "audit.*trail.*cleared",
-    "process.*name.*spoofing",
-    "file.*attribute.*manipulation",
-    "timestamp.*modification",
-    "binary.*padding.*detected",
-    "code.*signing.*bypass",
-    "sandbox.*escape.*attempt"
+    "(?i)(?:antivirus|security.*software).*(?:disabled|stopped).*(?:unexpectedly|unauthorized)",
+    "(?i)audit.*(?:trail|log).*(?:cleared|deleted).*(?:suspicious|unauthorized)",
+    "(?i)process.*name.*spoofing.*(?:detected|attempt)",
+    "(?i)(?:timestamp|file.*attribute).*manipulation.*detected",
+    "(?i)code.*signing.*(?:bypass|circumvent|disable).*attempt"
   ],
+  "exclude_patterns": [
+    "user.*initiated", "system.*update", "legitimate.*maintenance", "authorized.*administrator"
+  ],
+  "description": "Detects attempts to evade security controls and hide malicious activities",
+  "severity": "Critical",
+  "confidence": "High",
+  "remediation": "Re-enable security controls, investigate cause of disabling, run full system scan.",
   "attribution": {
     "source": "MITRE ATT&CK T1562",
     "author": "Security Operations Center",
     "date_created": "2024-02-01"
-  },
-  "anomalies": [
-    "Security software disabled without administrative action",
-    "System logs cleared during suspicious activity",
-    "Process masquerading as legitimate system processes",
-    "File timestamps modified to avoid detection",
-    "Code signing verification bypassed",
-    "Sandbox restrictions circumvented"
-  ],
-  "indicators_of_compromise": [
-    "Security control tampering",
-    "Log manipulation and deletion",
-    "Process and file masquerading",
-    "Anti-forensics techniques"
-  ]
+  }
 }

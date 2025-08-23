@@ -1,23 +1,28 @@
 {
   "name": "App_Masquerading",
   "patterns": [
-    "\\b(?:safarii?|phone|messag|facetime|photos)\\d?\\.app\\b",
-    "[\\u200B-\\u200D\\uFEFF]", 
-    "Applications/.+/(?!com\\.apple)[^/]+\\.app"
+    "\\b(?:safarii?|phonee?|messag[ez]?|facetim[ez]?|photo\\d+)\\d?\\.app\\b",
+    "[\\u200B-\\u200D\\uFEFF]",
+    "\\b\\w+\\.app\\.app\\b"
   ],
-  "description": "Detects apps/processes trying to look like stock Apple apps (doubled .app, typos, Unicode abuse).",
-  "postprocess": "Cross-check process path and signature. Siblings to Apple apps in /private or user home, not in standard /Applications.",
-  "confidence": "High",
+  "exclude_patterns": [
+    "com\\.apple\\.", "/System/", "/Library/",
+    "Batteries\\.app", "PeopleViewService\\.app", "FindMyExtensionContainer\\.app", 
+    "SleepWidgetContainer\\.app", "WidgetKit", "ExtensionContainer", "ViewService"
+  ],
+  "description": "Detects obvious app masquerading attempts, excluding legitimate Apple system apps",
+  "postprocess": "Verify app is actually malicious, not just descriptively named",
+  "confidence": "Medium",
   "examples": [
-    "/private/var/mobile/Containers/Bundle/Safari1.app",
-    "/Applications/Photos.app.app"
+    "safarii.app (typo)",
+    "Photos.app.app (doubled extension)",
+    "photo1.app (numbered variant)"
   ],
-  "exclusions": ["com.apple."],
-  "match_type": "path_and_name",
+  "remediation": "Investigate app source, check app store legitimacy, verify developer signature",
+  "match_type": "pattern_with_exclusions",
   "attribution": {
     "source": "Apple Security Research",
-    "version": "1.0",
-    "date": "2023-10-01"
+    "version": "2.0",
+    "date": "2025-08-17"
   }
 }
-  

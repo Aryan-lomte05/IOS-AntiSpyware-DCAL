@@ -1,0 +1,37 @@
+{
+  "name": "Covert_Screen_Audio_Recording",
+  "patterns": [
+    "(?i)(?:RPScreenRecorder|ReplayKit).*(?:startRecording|capture).*(?:without.*indicator|silent|stealth)",
+    "(?i)(?:UIScreen|main.*screen).*(?:capture|screenshot).*(?:continuous|interval|monitor)",
+    "(?i)(?:AVAudioEngine|AudioQueue).*(?:install.*tap|start.*recording).*(?:microphone|input).*(?:background|stealth)",
+    "(?i)(?:AVAudioRecorder|audio.*recording).*(?:meteringEnabled|peakPower).*(?:voice.*activation|threshold)",
+    "(?i)(?:IOSurface|CoreGraphics).*(?:create|copy).*(?:framebuffer|screen.*buffer).*(?:unauthorized|stealth)"
+  ],
+  "postprocess": "Check for missing recording indicators (red bar/dot), analyze audio session categories, verify screen recording permissions, look for large video/audio files being created.",
+  "examples": [
+    "RPScreenRecorder startRecording without visible recording indicator",
+    "AVAudioEngine microphone tap installed with voice activation threshold",
+    "UIScreen continuous capture every 5 seconds without user awareness"
+  ],
+  "remediation": "Revoke camera/microphone permissions, check Control Center for active recordings, delete suspicious media files, restart device to clear recording sessions, audit app permissions.",
+  "description": "Detects covert screen recording and audio surveillance without user awareness or consent indicators.",
+  "severity": "Critical",
+  "confidence": "High",
+  "tags": ["screen_recording", "audio_surveillance", "surveillance", "privacy_violation"],
+  "attribution": {
+    "source": "Screen Security Research",
+    "author": "Surveillance Detection Team",
+    "date_created": "2025-08-16"
+  }
+
+,
+  "exclude_patterns": [
+    "com\\.apple\\.", "com\\.google\\.", "com\\.microsoft\\."
+  ],
+  "match_type": "signature",
+  "enrichments": [
+    "Permission abuse analysis",
+    "Audio session category verification",
+    "File creation monitoring"
+  ]
+}

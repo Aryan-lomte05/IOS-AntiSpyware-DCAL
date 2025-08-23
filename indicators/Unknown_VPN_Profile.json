@@ -1,17 +1,17 @@
 {
-    "name": "Unknown_VPN_Profile",
-    "patterns": [
-        "VPNType\\s*:\\s*(?!IPSec|IKEv2|L2TP)",
-        "(proxy|VPN)\\s+(?!Apple|Nord|Express|TunnelBear)[A-Za-z0-9]+",
-        "RemoteManagement",
-        "\"PayloadDisplayName\"[^\n]*Private|Spy"
-    ],
-    "description": "Flags VPN/proxy profiles with suspicious/nonstandard provider names.",
-    "severity": "Medium",
-    "tags": [
-        "vpn",
-        "config",
-        "profile",
-        "advanced"
-    ]
+  "name": "Unknown_VPN_Profile",
+  "patterns": [
+    "(?i)VPNType\\s*:\\s*(?!IPSec|IKEv2|L2TP)\\w+.*(?:configuration|profile)",
+    "(?i)(proxy|VPN).*(?!Apple|Nord|Express|TunnelBear|corporate)[A-Za-z0-9]+.*(?:suspicious|unknown)",
+    "(?i)RemoteManagement.*(?:Unknown|Untrusted|unauthorized).*source",
+    "(?i)PayloadDisplayName.*(?:Private|Spy|hidden|suspicious)"
+  ],
+  "exclude_patterns": [
+    "enterprise", "corporate", "IT-managed", "authorized.*administrator", "legitimate.*vpn.*provider"
+  ],
+  "description": "Flags VPN/proxy profiles from suspicious or unknown sources.",
+  "severity": "Medium",
+  "confidence": "Medium",
+  "remediation": "Remove suspicious VPN profiles, audit network configurations, verify VPN provider legitimacy.",
+  "tags": ["vpn", "config", "profile", "advanced"]
 }

@@ -1,20 +1,20 @@
 {
-  "name": "Unusual LaunchAgent",
+  "name": "Unusual_LaunchAgent",
   "patterns": [
-    "LaunchAgents/.*user/[^ ]+",
-    "\"KeepAlive\"\\s*:\\s*true"
+    "(?i)LaunchAgents/.*user/[^\\s]+.*(?:KeepAlive|RunAtLoad).*true",
+    "(?i)LaunchAgent.*(?:writable.*location|temp.*directory|suspicious.*path)"
   ],
-  "description": "Possible malware persistence: new LaunchAgent from writable location with keep-alive.",
+  "exclude_patterns": [
+    "com\\.apple\\.", "legitimate.*application", "authorized.*installer", "system.*application"
+  ],
+  "description": "Unusual LaunchAgent from writable location with persistence enabled.",
   "severity": "High",
-  "tags": ["persistence", "advanced"]
-
-
-
-
-    ,
-    "attribution": {
-        "source": "Apple Forensics",
-        "author": "Security Team",
-        "date_created": "2024-10-15"
-    }
+  "confidence": "High",
+  "remediation": "Remove suspicious LaunchAgent, audit persistence mechanisms, check system integrity.",
+  "tags": ["persistence", "advanced"],
+  "attribution": {
+    "source": "Apple Forensics",
+    "author": "Security Team",
+    "date_created": "2024-10-15"
+  }
 }

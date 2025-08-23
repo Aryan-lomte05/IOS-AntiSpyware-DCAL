@@ -1,0 +1,46 @@
+{
+  "name": "Nation_State_APT_Indicators",
+  "patterns": [
+    "(?i)Equation.*Group.*detected",
+    "(?i)Tailored.*Access.*detected",
+    "(?i)Turla.*campaign.*detected",
+    "(?i)Fancy.*Bear.*operation",
+    "(?i)Lazarus.*Group.*detected",
+    "(?i)APT\\d+.*iOS.*campaign",
+    "(?i)Operation.*mobile.*espionage",
+    "(?i)zero.*day.*iOS.*exploit",
+    "(?i)state.*sponsored.*surveillance.*detected",
+    "(?i)nation.*state.*tool.*identified",
+    "(?i)custom.*encryption.*government.*detected",
+    "(?i)classified.*protocol.*detected",
+    "(?i)targeted.*attack.*government.*official",
+    "(?i)intelligence.*collection.*mobile.*detected"
+  ],
+  "exclude_patterns": [
+    "com\\.apple\\.", "com\\.google\\.", "com\\.microsoft\\.",
+    "normal.*operation", "legitimate.*update", "standard.*protocol",
+    "commercial.*software", "public.*encryption"
+  ],
+  "description": "Detects nation-state APT indicators with optimized performance patterns",
+  "postprocess": "Correlate with APT databases, verify government connections, analyze custom protocols",
+  "examples": [
+    "Equation Group mobile implant detected in system logs",
+    "APT28 iOS campaign indicators found",
+    "Nation-state surveillance tool signatures detected"
+  ],
+  "remediation": "CRITICAL: Contact national security authorities, preserve evidence, isolate device, conduct forensic analysis",
+  "severity": "Critical",
+  "confidence": "High",
+  "tags": ["nation_state", "apt", "state_sponsored", "espionage", "targeted_attack"],
+  "match_type": "optimized_detection",
+  "enrichments": [
+    "APT campaign correlation",
+    "Custom protocol analysis", 
+    "Government intelligence verification"
+  ],
+  "attribution": {
+    "source": "Nation-State Threat Intelligence",
+    "author": "APT Research Team",
+    "date_created": "2025-08-17"
+  }
+}

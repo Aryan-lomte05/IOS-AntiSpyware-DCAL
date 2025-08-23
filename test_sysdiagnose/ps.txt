@@ -1,0 +1,5 @@
+/System/Library/CoreGraphics.framework/Versions/A/CoreGraphics
+/System/Library/ImageIO.framework/Versions/A/ImageIO
+/System/Library/Frameworks/UIKit.framework/UIKit
+/private/var/mobile/Containers/Bundle/Safari1.app.app
+/Applications/Photos.app.app

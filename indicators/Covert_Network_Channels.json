@@ -1,0 +1,37 @@
+{
+  "name": "Covert_Network_Channels",
+  "patterns": [
+    "(?i)(?:DNS|nslookup).*(?:TXT|CNAME|MX).*(?:subdomain|query).*(?:encode|steganography|covert)",
+    "(?i)(?:HTTP|HTTPS).*(?:header|cookie|user-agent).*(?:encode|hide|embed).*(?:data|command|payload)",
+    "(?i)(?:WebSocket|Socket\\.IO).*(?:encrypted|obfuscated).*(?:message|command|control)",
+    "(?i)(?:ICMP|ping).*(?:data|payload).*(?:encode|embed|tunnel).*(?:command|data|exfil)",
+    "(?i)(?:Tor|onion|i2p).*(?:circuit|relay|hidden.*service).*(?:anonymize|proxy|tunnel)"
+  ],
+  "postprocess": "Analyze DNS query patterns for data encoding, inspect HTTP headers for hidden payloads, monitor for unusual network protocols, correlate with known C2 infrastructure.",
+  "examples": [
+    "DNS TXT queries with base64 encoded commands in subdomain",
+    "HTTP User-Agent header containing steganographically hidden data",
+    "ICMP ping packets with embedded command payload in data section"
+  ],
+  "remediation": "Block suspicious domains/IPs, monitor DNS queries, inspect network traffic, use DNS filtering, implement network segmentation, consider VPN/proxy restrictions.",
+  "description": "Detects covert network communication channels used to hide spyware command and control traffic.",
+  "severity": "High",
+  "confidence": "Medium",
+  "tags": ["covert_channels", "dns_tunneling", "steganography", "encrypted_comms"],
+  "attribution": {
+    "source": "Network Covert Channels Research",
+    "author": "Network Security Team",
+    "date_created": "2025-08-16"
+  }
+
+,
+  "exclude_patterns": [
+    "com\\.apple\\.", "com\\.google\\.", "com\\.microsoft\\."
+  ],
+  "match_type": "signature",
+  "enrichments": [
+    "Network traffic analysis",
+    "DNS query inspection",
+    "Protocol behavior analysis"
+  ]
+}

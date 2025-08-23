@@ -1,0 +1,37 @@
+{
+  "name": "Supply_Chain_Compromise",
+  "patterns": [
+    "(?i)(?:Xcode|iOS.*SDK|developer.*tool).*(?:malicious|trojan|backdoor).*(?:component|library|framework)",
+    "(?i)(?:CocoaPods|Swift.*Package|Carthage).*(?:dependency|package).*(?:malicious|compromised|suspicious)",
+    "(?i)(?:App.*Store|TestFlight|Enterprise).*(?:distribution|certificate).*(?:abuse|misuse|compromise)",
+    "(?i)(?:CI/CD|build.*system|automation).*(?:compromise|injection|supply.*chain).*(?:attack|modification)",
+    "(?i)(?:third-party|vendor|supplier).*(?:SDK|library|service).*(?:compromised|malicious|backdoored)"
+  ],
+  "postprocess": "Verify app store/enterprise certificate authenticity, check developer signatures, analyze build timestamps, correlate with known compromised packages/SDKs.",
+  "examples": [
+    "Malicious CocoaPods dependency found in legitimate app",
+    "Enterprise distribution certificate abuse for unauthorized app distribution",
+    "Compromised third-party SDK with backdoor functionality"
+  ],
+  "remediation": "Remove compromised apps, verify developer certificates, check app sources, update development tools, audit build processes, implement code signing verification.",
+  "description": "Detects supply chain compromises affecting iOS development tools, libraries, and distribution channels.",
+  "severity": "Critical",
+  "confidence": "Medium",
+  "tags": ["supply_chain", "development_compromise", "distribution_abuse", "trusted_source_abuse"],
+  "attribution": {
+    "source": "Supply Chain Security Initiative",
+    "author": "Software Supply Chain Team",
+    "date_created": "2025-08-16"
+  }
+
+,
+  "exclude_patterns": [
+    "com\\.apple\\.", "com\\.google\\.", "com\\.microsoft\\."
+  ],
+  "match_type": "signature",
+  "enrichments": [
+    "Dependency analysis",
+    "Certificate verification",
+    "Build process auditing"
+  ]
+}

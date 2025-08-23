@@ -1,21 +1,21 @@
 {
-    "name": "Suspicious_Process_Launch",
-    "patterns": [
-        "launchctl",
-        "wget",
-        "curl",
-        "osascript",
-        "\\.dylib"
-    ],
-    "description": "Flags suspicious process launches.",
-    "severity": "Medium",
-    "tags": [
-        "process",
-        "malware"
-    ],
-    "attribution": {
-        "source": "OSINT/iOSSec",
-        "author": "Community Threat List",
-        "date_created": "2024-10-01"
-    }
+  "name": "Suspicious_Process_Launch",
+  "patterns": [
+    "wget.*\\.sh",
+    "wget.*\\.py", 
+    "curl.*\\.sh",
+    "curl.*\\.py",
+    "curl.*\\.exe",
+    "osascript.*download",
+    "osascript.*execute",
+    "osascript.*system",
+    "launchctl load.*\\.plist",
+    "\\.dylib.*inject",
+    "\\.dylib.*hook"
+  ],
+  "exclude_patterns": [
+    "com\\.apple\\.", "/System/", "Software Update", "App Store", "/usr/libexec/"
+  ],
+  "description": "Fast suspicious process detection",
+  "severity": "Medium"
 }

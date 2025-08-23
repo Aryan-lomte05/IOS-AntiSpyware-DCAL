@@ -1,27 +1,15 @@
 {
   "name": "Abnormal_Config_Change",
   "patterns": [
-    "(?i)(vpn.*(third-party|private|obfuscated))",
-    "(?i)proxy[^:]{0,30}((enable(d)?|bypass|insecure|port.{1,4}[0-9]+))",
-    "(?i)RemoteManagement[^:]{0,80}(Unknown|Untrusted|EnrolledBy=\\w+)",
-    "(profilePayload.*(noSignature|unsigned|payloadUUID.{0,40}unknown))"
+    "(?i)vpn.*(?:malicious|suspicious|unauthorized).*(?:profile|configuration)",
+    "(?i)proxy.*(?:bypass|malicious).*(?:configuration|detected)",
+    "(?i)RemoteManagement.*(?:Suspicious|Malicious).*(?:detected|source)",
+    "(?i)profilePayload.*(?:unsigned|malicious).*(?:detected|installed)"
   ],
   "exclude_patterns": [
-    "com.apple.|Apple|MDMProfile|VPNType: (IPSec|IKEv2|L2TP)"
+    "com\\.apple\\.", "system", "legitimate", "enterprise", "corporate"
   ],
-  "match_type": "correlation",
-  "confidence": "High",
-  "postprocess": "Requires manual review for legit MDM/vpn enterprise onboarding.",
-  "examples": [
-    "VPNType: CustomPrivate | profilePayload: unsigned | RemoteManagement: Unknown",
-    "proxy enabled with port 8080 and no Apple attribution"
-  ],
-  "description": "Flags non-standard, potentially malicious configuration changes not involving known-good or MDM profiles. Tuned to exclude common IT setups.",
-  "remediation": "Investigate profile source, remove suspicious config.",
-  "tags": ["configuration", "network", "advanced", "contextual"],
-  "attribution": {
-    "source": "Apple Security Research",
-    "version": "1.0",
-    "date": "2023-10-01"
-  }
+  "description": "Detects genuinely suspicious configuration changes",
+  "severity": "Medium",
+  "confidence": "Medium"
 }

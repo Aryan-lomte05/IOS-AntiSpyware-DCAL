@@ -1,0 +1,37 @@
+{
+  "name": "Stealth_Data_Collection",
+  "patterns": [
+    "(?i)(?:ABAddressBook|CNContact).*(?:requestAccess|authorization).*(?:without.*prompt|bypass|silent)",
+    "(?i)(?:PHPhotoLibrary|ALAssetsLibrary).*(?:fetch|enumerate).*(?:metadata|EXIF|location).*(?:background|stealth)",
+    "(?i)(?:MFMessageComposeViewController|MFMailComposeViewController).*(?:read|access).*(?:without.*display|hidden)",
+    "(?i)(?:CallKit|CTCallCenter).*(?:callEventHandler|call.*history).*(?:monitor|track|log).*(?:stealth|background)",
+    "(?i)(?:HealthKit|HKHealthStore).*(?:requestAuthorization|read).*(?:silent|background).*(?:without.*consent)"
+  ],
+  "postprocess": "Analyze privacy permission logs, check for API calls without corresponding UI prompts, correlate with data exfiltration patterns, verify legitimate app behavior.",
+  "examples": [
+    "CNContact requestAccess called without user prompt or notification",
+    "PHPhotoLibrary enumeration of EXIF data in background without user interaction",
+    "CallKit call history access without visible UI or user consent"
+  ],
+  "remediation": "Review and revoke app permissions in Settings > Privacy, uninstall suspicious apps, monitor data usage, enable Screen Time restrictions, audit installed profiles.",
+  "description": "Detects unauthorized stealth collection of sensitive user data including contacts, photos, messages, and health information.",
+  "severity": "Critical",
+  "confidence": "High",
+  "tags": ["data_theft", "stealth_collection", "privacy_violation", "surveillance"],
+  "attribution": {
+    "source": "Privacy Rights Research",
+    "author": "Data Protection Team",
+    "date_created": "2025-08-16"
+  }
+
+,
+  "exclude_patterns": [
+    "com\\.apple\\.", "com\\.google\\.", "com\\.microsoft\\."
+  ],
+  "match_type": "signature",
+  "enrichments": [
+    "Privacy permission logs",
+    "API call analysis",
+    "Data exfiltration patterns"
+  ]
+}

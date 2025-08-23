@@ -1,10 +1,17 @@
 {
   "name": "Accessibility_Abuse",
   "patterns": [
-    "accessibility enabled|SpringBoard injection|assistivetouch",
-    "UIAutomation|touch injection|remote control"
+    "(?i)accessibility.*enabled.*(?:non-system|third-party|unknown).*app",
+    "(?i)SpringBoard.*injection.*(?:accessibility|assistive)",
+    "(?i)UIAutomation.*(?:touch.*injection|remote.*control).*(?:unauthorized|suspicious)",
+    "(?i)assistivetouch.*(?:programmatic|automated|script)"
   ],
-  "description": "Non-system app enabled accessibility or UI automation (possible spyware).",
+  "exclude_patterns": [
+    "com\\.apple\\.", "system preferences", "settings", "user.*enabled", "manual.*activation"
+  ],
+  "description": "Non-system app abusing accessibility features for UI automation or surveillance.",
   "severity": "Medium",
+  "confidence": "Medium",
+  "remediation": "Review accessibility permissions, disable for suspicious apps, audit UI automation usage.",
   "tags": ["automation", "privacy", "espionage", "advanced"]
 }

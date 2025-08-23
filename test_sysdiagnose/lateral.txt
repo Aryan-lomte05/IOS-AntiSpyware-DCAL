@@ -1,0 +1,2 @@
+2025-08-12 09:21:03 Detected ssh connection rapid multiple internal hosts
+2025-08-12 09:45:03 credential dump attempt detected user admin

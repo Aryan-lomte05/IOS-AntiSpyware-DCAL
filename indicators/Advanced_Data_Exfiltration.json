@@ -1,0 +1,31 @@
+{
+  "name": "Advanced_Data_Exfiltration",
+  "patterns": [
+    "(?i)(?:unauthorized|suspicious|malicious).*(?:iCloud|CloudKit).*(?:upload|sync|backup).*(?:detected|alert|warning)",
+    "(?i)AirDrop.*(?:unauthorized|suspicious).*(?:transfer|transmission).*(?:blocked|detected|alert)",
+    "(?i)email.*(?:suspicious|large|unauthorized).*attachment.*(?:sent|transmitted|detected)",
+    "(?i)(?:data.*exfiltration|information.*theft|credential.*theft).*(?:detected|in.*progress|attempt)",
+    "(?i)(?:excessive|abnormal).*(?:data.*transfer|upload.*volume).*(?:detected|alert|suspicious)"
+  ],
+  "exclude_patterns": [
+    "com\\.apple\\.", "com\\.google\\.", "com\\.microsoft\\.",
+    "Truth\\.plist", "normal.*operation", "system.*sync", "automatic.*backup",
+    "legitimate.*sync", "authorized.*transfer", "user.*initiated.*sync",
+    "system.*configuration", "routine.*backup"
+  ],
+  "description": "Detects confirmed malicious data exfiltration attempts, excluding normal system operations",
+  "severity": "Critical", 
+  "confidence": "High",
+  "remediation": "Monitor data usage, review cloud sync settings, audit file transfers, check for unauthorized access",
+  "match_type": "contextual_detection",
+  "enrichments": [
+    "Data transfer volume analysis",
+    "Cloud sync pattern monitoring", 
+    "File encoding detection"
+  ],
+  "attribution": {
+    "source": "Data Loss Prevention Research",
+    "author": "Exfiltration Analysis Team", 
+    "date_created": "2025-08-16"
+  }
+}

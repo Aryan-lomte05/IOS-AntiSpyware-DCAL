@@ -1,0 +1,25 @@
+{
+  "name": "Behavioral_Analysis_Evasion",
+  "patterns": [
+    "(?i)simulate.*user.*interaction.*detected",
+    "(?i)fake.*touch.*gesture.*attempt",
+    "(?i)ML.*evasion.*technique.*detected",
+    "(?i)adversarial.*attack.*in.*progress",
+    "(?i)timing.*randomization.*evasion.*detected",
+    "(?i)behavioral.*bypass.*attempt.*detected",
+    "(?i)detection.*evasion.*pattern.*identified",
+    "(?i)automated.*behavior.*simulation.*detected",
+    "(?i)anti.*analysis.*technique.*employed",
+    "(?i)evasion.*behavior.*pattern.*detected"
+  ],
+  "exclude_patterns": [
+    "com\\.apple\\.", "com\\.google\\.", "com\\.microsoft\\.",
+    "ActivityState", "activityStateChangeCount", "normal.*operation",
+    "legitimate.*testing", "system.*simulation", "hidutil\\.plist",
+    "system.*configuration", "iOS.*system", "legitimate.*activity"
+  ],
+  "description": "Detects confirmed behavioral evasion attempts with strict context requirements",
+  "severity": "High",
+  "confidence": "Medium",
+  "remediation": "Investigate evasion technique, implement additional behavioral monitoring, update detection models"
+}

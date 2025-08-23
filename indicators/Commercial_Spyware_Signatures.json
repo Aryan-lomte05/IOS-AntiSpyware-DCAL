@@ -1,0 +1,37 @@
+{
+  "name": "Commercial_Spyware_Signatures",
+  "patterns": [
+    "(?i)(?:FlexiSpy|mSpy|Spyzie|Cocospy|XNSPY|SpyBubble).*(?:agent|client|monitor).*(?:install|active|running)",
+    "(?i)(?:Cellebrite|GrayKey|UFED|Oxygen).*(?:extraction|forensic).*(?:agent|implant|payload)",
+    "(?i)(?:FinFisher|FinSpy|Gamma.*Group).*(?:surveillance|monitor).*(?:module|component)",
+    "(?i)(?:NSO.*Group|Pegasus|Circles|Verint).*(?:intercept|monitor|surveillance).*(?:capability|feature)",
+    "(?i)(?:com\\.flexispy|com\\.mspy|com\\.spyzie).*(?:service|daemon|process)"
+  ],
+  "postprocess": "Cross-reference with known commercial spyware vendor databases, check installation timestamps, correlate with suspicious network traffic to known C2 infrastructure.",
+  "examples": [
+    "com.flexispy.agent service running with surveillance capabilities",
+    "Cellebrite UFED extraction agent found in system processes",
+    "FinFisher surveillance module detected with active monitoring"
+  ],
+  "remediation": "Factory reset device, change all passwords, enable 2FA, check other devices, consider legal action, report to law enforcement if stalking/harassment suspected.",
+  "description": "Detects signatures and behavioral patterns of known commercial spyware vendors and products.",
+  "severity": "Critical",
+  "confidence": "High",
+  "tags": ["commercial_spyware", "surveillance_vendor", "pegasus", "flexispy", "cellebrite"],
+  "attribution": {
+    "source": "Commercial Spyware Database",
+    "author": "Spyware Research Team",
+    "date_created": "2025-08-16"
+  },
+
+    
+  "exclude_patterns": [
+    "com\\.apple\\.", "com\\.google\\.", "com\\.microsoft\\."
+  ],
+  "match_type": "signature",
+  "enrichments": [
+    "Vendor database lookup",
+    "Network traffic analysis",
+    "Process signature verification"
+  ]
+}

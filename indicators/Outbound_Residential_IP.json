@@ -1,15 +1,13 @@
 {
-  "name": "Outbound_Residential_IP",
-  "patterns": ["\\b(?:[0-9]{1,3}\\.){3}[0-9]{1,3}\\b"],
-  "postprocess": "Cross-check IP ASN. Alert only if lookup reveals residential/ISP ASN (not known CDNs or cloud providers).",
-  "confidence": "High with enrichment",
-  "description": "Detects outbound connections to likely attacker-controlled residential IPs. Requires IP enrichment.",
-  "tags": ["network", "exfil", "ASN_context", "intel_required"],
-  "match_type": "ip_address",
-
- 
-  "enrichments": [
-    "IP ASN lookup",
-    "Threat intelligence correlation"
-  ]
+  "name": "Outbound_Residential_IP", 
+  "patterns": [
+    "connection.*residential.*IP",
+    "outbound.*\\b(?:comcast|verizon|att|cox|charter)\\b",
+    "suspicious.*residential.*connection"
+  ],
+  "exclude_patterns": [
+    "legitimate", "authorized", "vpn", "proxy", "cdn"
+  ],
+  "description": "Detects suspicious outbound connections with residential context",
+  "severity": "Medium"
 }

@@ -1,0 +1,37 @@
+{
+  "name": "Advanced_Keylogging",
+  "patterns": [
+    "(?i)(?:UITextInput|UITextField).*(?:shouldChangeText|textDidChange).*(?:log|capture|record).*(?:all.*input|keystrokes)",
+    "(?i)(?:UIKeyboard|keyboard.*notification).*(?:will.*show|did.*show).*(?:capture|intercept|monitor)",
+    "(?i)(?:SecureTextEntry|isSecureTextEntry).*(?:bypass|disable|override).*(?:password|secure.*field)",
+    "(?i)(?:accessibility|AXUIElement).*(?:value|text).*(?:extract|capture).*(?:password|sensitive)",
+    "(?i)(?:GSKeyboard|GraphicsServices).*(?:keydown|keyup|character).*(?:capture|intercept|log)"
+  ],
+  "postprocess": "Verify accessibility permissions abuse, check for keyboard extension modifications, analyze input method hooking, correlate with credential theft indicators.",
+  "examples": [
+    "UITextField textDidChange logging all keystrokes including secure fields",
+    "Accessibility AXUIElement extracting password field values without user consent",
+    "GSKeyboard keydown events captured and logged to external file"
+  ],
+  "remediation": "Change all passwords immediately, disable accessibility for suspicious apps, remove unknown keyboard extensions, enable hardware security keys where possible, monitor account access.",
+  "description": "Detects sophisticated keylogging mechanisms including secure text field bypass and accessibility abuse.",
+  "severity": "Critical",
+  "confidence": "High",
+  "tags": ["keylogging", "credential_theft", "password_capture", "accessibility_abuse"],
+  "attribution": {
+    "source": "Input Security Research",
+    "author": "Keylogging Detection Team",
+    "date_created": "2025-08-16"
+  }
+
+,
+  "exclude_patterns": [
+    "com\\.apple\\.", "com\\.google\\.", "com\\.microsoft\\."
+  ],
+  "match_type": "signature",
+  "enrichments": [
+    "Accessibility permission abuse analysis",
+    "Keyboard extension behavior monitoring",
+    "Input method hooking detection"
+  ]
+}

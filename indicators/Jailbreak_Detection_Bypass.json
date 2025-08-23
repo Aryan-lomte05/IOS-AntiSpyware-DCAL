@@ -1,0 +1,37 @@
+{
+  "name": "Jailbreak_Detection_Bypass",
+  "patterns": [
+    "(?i)(?:/Applications/Cydia|/usr/sbin/sshd|/usr/bin/ssh).*(?:exists|accessible).*(?:check|detect|bypass)",
+    "(?i)(?:dpkg|apt-get|Cydia).*(?:installed|available).*(?:hide|mask|spoof)",
+    "(?i)(?:/var/lib/apt|/etc/apt|/private/var).*(?:writable|accessible).*(?:jailbreak.*indicator)",
+    "(?i)(?:Substrate|Substitute|libhooker).*(?:dylib|hook|inject).*(?:runtime|process)",
+    "(?i)(?:sandbox|container).*(?:escape|bypass).*(?:root.*filesystem|system.*partition).*(?:access|write)"
+  ],
+  "postprocess": "Check for jailbreak artifacts being hidden or spoofed, verify system partition integrity, analyze runtime hooking libraries, correlate with privilege escalation attempts.",
+  "examples": [
+    "Cydia installation check bypassed while jailbreak artifacts remain",
+    "Substrate dylib injection detected with runtime hooking",
+    "Sandbox escape attempt to access root filesystem"
+  ],
+  "remediation": "Update iOS to latest version, restore device from clean backup, avoid installing untrusted profiles, monitor for persistent jailbreak attempts, consider device replacement if persistent.",
+  "description": "Detects attempts to bypass jailbreak detection mechanisms commonly used by advanced spyware.",
+  "severity": "High",
+  "confidence": "High",
+  "tags": ["jailbreak_bypass", "detection_evasion", "root_access", "sandbox_escape"],
+  "attribution": {
+    "source": "iOS Security Research",
+    "author": "Jailbreak Analysis Team",
+    "date_created": "2025-08-16"
+  }
+
+,
+  "exclude_patterns": [
+    "com\\.apple\\.", "com\\.google\\.", "com\\.microsoft\\."
+  ],
+  "match_type": "signature",
+  "enrichments": [
+    "Jailbreak artifact analysis",
+    "Runtime hooking detection",
+    "Sandbox escape verification"
+  ]
+}

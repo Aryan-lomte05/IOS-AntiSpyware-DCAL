@@ -1,0 +1,26 @@
+{
+  "name": "Privileged_Access_Abuse",
+  "patterns": [
+    "(?i)(?:SIP|System.*Integrity|rootless).*(?:disable|bypass|circumvent).*(?:protection|restriction)",
+    "(?i)(?:TCC|Transparency.*Consent).*(?:bypass|override|manipulate).*(?:privacy|permission|access)",
+    "(?i)(?:entitlement|sandbox).*(?:bypass|escape|violation).*(?:container|restriction|boundary)",
+    "(?i)(?:Mobile.*Device.*Management|MDM).*(?:bypass|unenroll|remove).*(?:restriction|policy|control)",
+    "(?i)(?:codesign|spctl).*(?:--deep|--no-strict).*(?:adhoc|disable)"
+  ],
+  "postprocess": "Check system integrity status, verify TCC database integrity, analyze entitlement violations, correlate with privilege escalation attempts.",
+  "examples": [
+    "SIP disabled without user knowledge allowing system modification",
+    "TCC database manipulation to bypass privacy permissions",
+    "Sandbox entitlement violation to access restricted resources"
+  ],
+  "remediation": "Re-enable SIP protection, reset TCC permissions, verify system integrity, remove unauthorized profiles, restore from clean backup if needed.",
+  "description": "Detects abuse of privileged access mechanisms and security control bypasses used by advanced spyware.",
+  "severity": "Critical",
+  "confidence": "High",
+  "tags": ["privilege_abuse", "security_bypass", "sip_bypass", "tcc_bypass"],
+  "attribution": {
+    "source": "System Security Research",
+    "author": "Privilege Security Team",
+    "date_created": "2025-08-16"
+  }
+}

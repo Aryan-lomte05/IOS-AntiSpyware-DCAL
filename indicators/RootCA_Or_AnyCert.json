@@ -1,10 +1,15 @@
 {
   "name": "RootCA_Or_AnyCert",
   "patterns": [
-    "RootCertificate|AddTrust|TrustStore",    
-    "\"allow any\"|insecureSkipVerify|AllowAllCertificates" 
+    "(?i)(?:RootCertificate|AddTrust|TrustStore).*(?:install|add|modify).*(?:unauthorized|suspicious)",
+    "(?i)(?:allow.*any|insecureSkipVerify|AllowAllCertificates).*(?:configuration|setting|enabled)"
   ],
-  "description": "Flags custom root cert installs and configs that allow insecure/pinned bypass.",
+  "exclude_patterns": [
+    "enterprise.*certificate", "corporate.*root.*ca", "authorized.*administrator", "legitimate.*installer"
+  ],
+  "description": "Flags unauthorized root certificate installs and insecure certificate configurations.",
   "severity": "High",
+  "confidence": "Medium",
+  "remediation": "Remove unauthorized certificates, review certificate trust settings, implement certificate pinning.",
   "tags": ["certificate", "security", "mitm", "advanced"]
 }

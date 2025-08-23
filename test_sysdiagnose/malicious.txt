@@ -1,0 +1,2 @@
+2025-08-16 12:34:01 CoreGraphics crash detected - stack trace follows
+2025-08-16 12:35:01 iMessage exploit CVE-2024-0001 detected

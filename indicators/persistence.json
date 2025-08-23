@@ -1,19 +1,21 @@
 {
-    "name": "Persistence_Mechanism",
-    "patterns": [
-        "LaunchAgents",
-        "LaunchDaemons",
-        "crontab"
-    ],
-    "description": "Detects unauthorized persistence mechanisms.",
-    "severity": "Medium",
-    "tags": [
-        "startup",
-        "autorun"
-    ],
-    "attribution": {
-        "source": "Apple Forensics",
-        "author": "Security Team",
-        "date_created": "2024-06-18"
-    }
+  "name": "Persistence_Mechanism",
+  "patterns": [
+    "(?i)LaunchAgents.*(?!/System/).*(?:suspicious|unauthorized|unknown)",
+    "(?i)LaunchDaemons.*(?!/System/).*(?:non-apple|third-party|malicious)",
+    "(?i)crontab.*(?:add|modify|create).*(?:suspicious|unauthorized|payload)"
+  ],
+  "exclude_patterns": [
+    "com\\.apple\\.", "/System/Library/", "legitimate.*application", "authorized.*installer"
+  ],
+  "description": "Detects unauthorized persistence mechanisms outside system directories.",
+  "severity": "Medium",
+  "confidence": "Medium",
+  "remediation": "Remove unauthorized persistence items, audit system startup processes, check for additional backdoors.",
+  "tags": ["startup", "autorun"],
+  "attribution": {
+    "source": "Apple Forensics",
+    "author": "Security Team",
+    "date_created": "2024-06-18"
+  }
 }

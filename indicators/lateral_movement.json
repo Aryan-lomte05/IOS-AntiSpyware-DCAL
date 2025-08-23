@@ -1,36 +1,19 @@
 {
-  "name": "Lateral Movement Patterns",
-  "description": "Identifies attempts to move laterally through network infrastructure and compromise additional systems",
-  "severity": "High",
+  "name": "Lateral_Movement_Patterns", 
   "patterns": [
-    "ssh.*connection.*internal.*network",
-    "smb.*share.*enumeration",
-    "rdp.*connection.*established",
-    "psexec.*remote.*execution",
-    "wmi.*remote.*command",
-    "powershell.*remoting.*session",
-    "admin.*share.*access",
-    "service.*creation.*remote",
-    "scheduled.*task.*remote",
-    "credential.*reuse.*detected"
+    "(?i)ssh.*connection.*(?:rapid|multiple|unauthorized).*(?:internal|network).*(?:hosts|systems)",
+    "(?i)(?:smb|rdp).*(?:enumeration|brute.*force|unauthorized).*(?:multiple.*targets|network)",
+    "(?i)(?:psexec|wmi).*remote.*execution.*(?:unauthorized|suspicious|malicious)",
+    "(?i)credential.*(?:reuse|pass.*the.*hash).*(?:multiple.*systems|lateral.*movement)",
+    "(?i)admin.*share.*access.*(?:unauthorized|suspicious|enumeration).*(?:detected|attempt)"
   ],
-  "attribution": {
-    "source": "MITRE ATT&CK T1021",
-    "author": "Network Defense Team",
-    "date_created": "2024-01-30"
-  },
-  "anomalies": [
-    "SSH connections to multiple internal hosts",
-    "SMB share enumeration from single source",
-    "Remote desktop connections outside business hours",
-    "Service creation on multiple remote systems",
-    "Credential reuse across different systems",
-    "Administrative tool usage from non-admin accounts"
+  "exclude_patterns": [
+    "com\\.apple\\.", "system.*configuration", "MCSettings", "Truth\\.plist",
+    "normal.*operation", "legitimate.*remote", "authorized.*access",
+    "mobile.*configuration", "system.*settings", "configuration.*profile"
   ],
-  "indicators_of_compromise": [
-    "Rapid propagation across network segments",
-    "Privilege escalation on remote systems",
-    "Tool transfer between compromised hosts",
-    "Coordinated multi-system activities"
-  ]
+  "description": "Detects lateral movement attempts, excluding normal system configuration",
+  "severity": "High", 
+  "confidence": "Medium",
+  "remediation": "Isolate affected systems, audit network access, reset credentials, implement network segmentation"
 }

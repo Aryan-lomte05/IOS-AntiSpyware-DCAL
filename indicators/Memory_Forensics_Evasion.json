@@ -1,0 +1,37 @@
+{
+  "name": "Memory_Forensics_Evasion",
+  "patterns": [
+    "(?i)(?:mlock|mlockall|mprotect).*(?:memory.*page|buffer|heap).*(?:encrypt|obfuscate|wipe)",
+    "(?i)(?:memset|bzero|SecureZeroMemory).*(?:sensitive|key|password).*(?:overwrite|clear|wipe)",
+    "(?i)(?:mmap|madvise).*(?:MADV_DONTDUMP|MAP_PRIVATE).*(?:hide|exclude|protect).*(?:memory|dump)",
+    "(?i)(?:heap.*spray|ROP|JOP).*(?:gadget|chain|payload).*(?:obfuscate|encrypt|polymorphic)",
+    "(?i)(?:anti-debug|anti-dump).*(?:technique|method).*(?:ptrace|debugger|memory.*scanner)"
+  ],
+  "postprocess": "Analyze memory allocation patterns, check for encrypted heap regions, look for anti-debugging artifacts, correlate with process injection indicators.",
+  "examples": [
+    "mlock() calls protecting encrypted heap regions from memory dumps",
+    "MADV_DONTDUMP used to exclude memory regions from core dumps",
+    "Anti-debug techniques preventing memory analysis tools"
+  ],
+  "remediation": "Capture memory dump before detection, use kernel-level forensics tools, analyze system call traces, preserve evidence for expert analysis.",
+  "description": "Detects techniques used to evade memory forensics analysis and hide spyware presence in memory.",
+  "severity": "High",
+  "confidence": "Medium",
+  "tags": ["memory_evasion", "anti_forensics", "memory_protection", "stealth_techniques"],
+  "attribution": {
+    "source": "Memory Analysis Research",
+    "author": "Anti-Forensics Team",
+    "date_created": "2025-08-16"
+  }
+
+,
+  "exclude_patterns": [
+    "com\\.apple\\.", "com\\.google\\.", "com\\.microsoft\\."
+  ],
+  "match_type": "signature",
+  "enrichments": [
+    "Memory allocation pattern analysis",
+    "Encrypted heap region detection",
+    "Anti-debugging artifact verification"
+  ]
+}
